@@ -14,6 +14,8 @@ The following health check backends are bundled into this project:
 - Storage
 - AWS S3 storage
 - Celery task queue
+- RMQ
+- SQS
 
 Writing your own custom health checks is also very quick and easy.
 
@@ -51,6 +53,16 @@ Add the ``health_check`` applications to your ``INSTALLED_APPS``:
         'health_check.contrib.s3boto_storage',      # requires boto and S3BotoStorage backend
     ]
 
+SAMPLE CONFIGURATION:
+
+    HEALTH_CHECK_CONF = dict(
+        rmq_host='localhost',
+        sqs_queue_name='queue_name',
+        region_name='eu-west-1',
+        aws_secret_access_key='mykey',
+        aws_access_key_id= 'access_id',
+        soft_dependencies = []
+    )
 Setting up monitoring
 ---------------------
 
