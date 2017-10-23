@@ -4,6 +4,7 @@ import copy
 from django.http import JsonResponse
 from django.views.decorators.cache import never_cache
 from django.views.generic import TemplateView
+from django.conf import settings
 
 from health_check.plugins import plugin_dir
 
@@ -15,13 +16,16 @@ class MainView(TemplateView):
     def get(self, request, *args, **kwargs):
         plugins = []
         errors = []
+        hard_dependency_errors = []
         for plugin_class, options in plugin_dir._registry:
             plugin = plugin_class(**copy.deepcopy(options))
             plugin.run_check()
             plugins.append(plugin)
             errors += plugin.errors
+            if str(plugin.identifier()) not in settings.HEALTH_CHECK_CONF['soft_dependencies']:
+                hard_dependency_errors += plugin.errors
         plugins.sort(key=lambda x: x.identifier())
-        status_code = 500 if errors else 200
+        status_code = 500 if hard_dependency_errors else 200
 
         if 'application/json' in request.META.get('HTTP_ACCEPT', ''):
             return self.render_to_response_json(plugins, status_code)

@@ -6,22 +6,34 @@
 #
 amqp==2.2.2               # via kombu
 billiard==3.5.0.3         # via celery
+boto3==1.4.7
+botocore==1.7.33          # via boto3, s3transfer
 celery==4.1.0
+configparser==3.5.0       # via flake8, pydocstyle
 coverage==4.4.1
+docutils==0.14            # via botocore
+enum34==1.1.6             # via flake8
 flake8==3.4.1
+funcsigs==1.0.2           # via mock
+futures==3.1.1            # via s3transfer
 isort==4.2.15
+jmespath==0.9.3           # via boto3, botocore
 kombu==4.1.0              # via celery
 mccabe==0.6.1
 mock==2.0.0
-pbr==3.1.1               # via mock
+pbr==3.1.1                # via mock
 pep8-naming==0.4.1
 pep8==1.7.0
+pika==0.11.0
 py==1.4.34                # via pytest
 pycodestyle==2.3.1        # via flake8
 pydocstyle==2.1.1
-pyflakes==1.6.0 # via flake8
+pyflakes==1.5.0           # via flake8
 pytest-django==3.1.2
 pytest==3.2.3
-pytz==2017.2             # via celery
-six==1.11.0               # via mock
+python-dateutil==2.6.1    # via botocore
+pytz==2017.2              # via celery
+s3transfer==0.1.11        # via boto3
+six==1.11.0               # via mock, pydocstyle, python-dateutil
+snowballstemmer==1.2.1    # via pydocstyle
 vine==1.1.4               # via amqp
