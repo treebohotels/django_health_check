@@ -17,6 +17,6 @@ class SQSHealthCheck(BaseHealthCheckBackend):
                                  aws_access_key_id=settings.HEALTH_CHECK_CONF['aws_access_key_id']
                                  )
             q = sqs.get_queue_by_name(QueueName=settings.HEALTH_CHECK_CONF['sqs_queue_name'])
-        except Exception, e:
+        except Exception as e:
             ServiceUnavailable("connection error")
 
