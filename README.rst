@@ -14,6 +14,8 @@ The following health check backends are bundled into this project:
 - Storage
 - AWS S3 storage
 - Celery task queue
+- RMQ
+- SQS
 
 Writing your own custom health checks is also very quick and easy.
 
@@ -22,11 +24,11 @@ We also like contributions, so don't be afraid to make a pull request.
 Installation
 ------------
 
-First install the ``django-health-check`` package:
+First add to requirement file:
 
 .. code::
 
-    pip install django-health-check
+    git+https://utkarshmishra42@bitbucket.org/treebo/django-health-check.git
 
 Add the health checker to an URL you want to use:
 
@@ -41,16 +43,24 @@ Add the ``health_check`` applications to your ``INSTALLED_APPS``:
 
 .. code:: python
 
-    INSTALLED_APPS = [
+    INSTALLED_APPS += [
         # ...
         'health_check',                             # required
         'health_check.db',                          # stock Django health checkers
-        'health_check.cache',
-        'health_check.storage',
-        'health_check.contrib.celery',              # requires celery
-        'health_check.contrib.s3boto_storage',      # requires boto and S3BotoStorage backend
+        'health_check.contrib.sqs',              # requires celery
+        'health_check.contrib.rmq',      # requires boto and S3BotoStorage backend
     ]
 
+SAMPLE CONFIGURATION:
+
+    HEALTH_CHECK_CONF = dict(
+        rmq_host='localhost',
+        sqs_queue_name='queue_name',
+        region_name='eu-west-1',
+        aws_secret_access_key='mykey',
+        aws_access_key_id= 'access_id',
+        soft_dependencies = []
+    )
 Setting up monitoring
 ---------------------
 
