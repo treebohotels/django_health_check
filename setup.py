@@ -44,7 +44,7 @@ setup(
         'Topic :: System :: Monitoring',
         'Topic :: Utilities',
     ],
-    install_requires=[],
+    install_requires=['pika', 'boto3'],
     include_package_data=True,
     zip_safe=False,
 )
