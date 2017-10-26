@@ -24,7 +24,7 @@ setup(
                  " using a number of plugins to check e.g. database, queue server, celery processes, etc."),
     license="BSD",
     keywords="django health check monitoring",
-    url="https://github.com/KristianOellegaard/django-health-check",
+    url="https://bitbucket.org/treebo/django-health-check",
     packages=find_packages(exclude=['tests', 'docs']),
     long_description=read('README.rst'),
     classifiers=[
