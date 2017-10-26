@@ -44,7 +44,7 @@ setup(
         'Topic :: System :: Monitoring',
         'Topic :: Utilities',
     ],
-    install_requires=['pika'],
+    install_requires=[],
     include_package_data=True,
     zip_safe=False,
 )
