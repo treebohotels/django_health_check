@@ -16,10 +16,10 @@ def read(fname):
 
 
 setup(
-    name="django-health-check",
+    name="treebo-health-check",
     version=__version__,
-    author="Kristian Ollegaard",
-    author_email="kristian@oellegaard.com",
+    author="Utkarsh Mishra",
+    author_email="utkarsh@treebohotels.com",
     description=("a pluggable app that runs a full check on the deployment,"
                  " using a number of plugins to check e.g. database, queue server, celery processes, etc."),
     license="BSD",

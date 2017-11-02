@@ -11,6 +11,6 @@ class RMQHealthCheck(BaseHealthCheckBackend):
     def check_status(self):
         logger = logging.getLogger(__name__)
         try:
-            pika.BlockingConnection(pika.ConnectionParameters(settings.HEALTH_CHECK_CONF['rmq_host']))
+            pika.BlockingConnection(pika.URLParameters(settings.HEALTH_CHECK_CONF['rmq_host']))
         except Exception as e:
             raise ServiceUnavailable("Connection Error")
