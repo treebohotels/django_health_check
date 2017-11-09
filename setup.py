@@ -16,7 +16,7 @@ def read(fname):
 
 
 setup(
-    name="treebo-health-check",
+    name="django-health-check",
     version=__version__,
     author="Utkarsh Mishra",
     author_email="utkarsh@treebohotels.com",
