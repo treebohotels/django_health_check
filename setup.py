@@ -16,15 +16,15 @@ def read(fname):
 
 
 setup(
-    name="django-health-check",
+    name="treebo-health-check",
     version=__version__,
     author="Utkarsh Mishra",
-    author_email="utkarsh@treebohotels.com",
+    author_email="utkarsh.mishra@treebohotels.com",
     description=("a pluggable app that runs a full check on the deployment,"
                  " using a number of plugins to check e.g. database, queue server, celery processes, etc."),
     license="BSD",
     keywords="django health check monitoring",
-    url="https://bitbucket.org/treebo/django-health-check",
+    url="https://github.com/TreeboHotels/django_health_check",
     packages=find_packages(exclude=['tests', 'docs']),
     long_description=read('README.rst'),
     classifiers=[

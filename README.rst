@@ -28,7 +28,7 @@ First add to requirement file:
 
 .. code::
 
-    git+https://utkarshmishra42@bitbucket.org/treebo/django-health-check.git
+    treebo_health_check
 
 Add the health checker to an URL you want to use:
 
@@ -36,7 +36,7 @@ Add the health checker to an URL you want to use:
 
     urlpatterns = [
         # ...
-        url(r'^ht/$', include('health_check.urls')),
+        url(r'^api/health/$', include('health_check.urls')),
     ]
 
 Add the ``health_check`` applications to your ``INSTALLED_APPS``:
@@ -47,8 +47,8 @@ Add the ``health_check`` applications to your ``INSTALLED_APPS``:
         # ...
         'health_check',                             # required
         'health_check.db',                          # stock Django health checkers
-        'health_check.contrib.sqs',              # requires celery
-        'health_check.contrib.rmq',      # requires boto and S3BotoStorage backend
+        'health_check.contrib.sqs',                 # requires boto3
+        'health_check.contrib.rmq',                 #requires pika
     ]
 
 SAMPLE CONFIGURATION:
@@ -65,14 +65,14 @@ Setting up monitoring
 ---------------------
 
 You can use tools like Pingdom_ or other uptime robots to monitor service status.
-The ``/ht/`` endpoint will respond a HTTP 200 if all checks passed
+The ``/api/health/`` endpoint will respond a HTTP 200 if all checks passed
 and a HTTP 500 if any of the tests failed.
 
 .. code::
 
-    $ curl -v -X GET -H http://www.example.com/ht/
+    $ curl -v -X GET -H http://www.example.com/api/health/
 
-    > GET /ht/ HTTP/1.1
+    > GET /api/health/ HTTP/1.1
     > Host: www.example.com
     > Accept: */*
     >
@@ -104,14 +104,14 @@ and a HTTP 500 if any of the tests failed.
 Getting machine readable JSON reports
 -------------------------------------
 
-If you want machine readable status reports you can request the ``/ht/``
+If you want machine readable status reports you can request the ``/api/health/``
 endpoint with the ``Accept`` HTTP header set to ``application/json``.
 
 The backend will return a JSON response:
 
 .. code::
 
-    $ curl -v -X GET -H "Accept: application/json" http://www.example.com/ht/
+    $ curl -v -X GET -H "Accept: application/json" http://www.example.com/api/health/
 
     > GET /ht/ HTTP/1.1
     > Host: www.example.com

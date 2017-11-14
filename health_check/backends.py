@@ -52,6 +52,9 @@ class BaseHealthCheckBackend(object):
             return "\n".join(str(e) for e in self.errors)
         return _('working')
 
+    def state(self):
+        return 'fail' if self.errors else 'ok'
+
     @property
     def status(self):
         return int(not self.errors)
