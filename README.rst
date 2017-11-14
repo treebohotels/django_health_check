@@ -121,10 +121,12 @@ The backend will return a JSON response:
     < Content-Type: application/json
 
     {
-        "CacheBackend": "working",
-        "DatabaseBackend": "working",
-        "S3BotoStorageHealthCheck": "working"
-    }
+    "resources": 
+        [
+            {"state": "ok", "resource": "DatabaseBackend", "details": "working"},
+            {"state": "fail", "resource": "RMQHealthCheck", "details": "unavailable: Connection Error"}
+         ]
+     }
 
 Writing a custom health check
 -----------------------------
