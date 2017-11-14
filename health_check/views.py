@@ -28,9 +28,9 @@ class MainView(TemplateView):
         status_code = 500 if hard_dependency_errors else 200
 
         if 'application/json' in request.META.get('HTTP_ACCEPT', ''):
-            return self.render_to_response_json(plugins, status_code)
+            return self.render_to_response_with_state_json(plugins, status_code)
 
-        return self.render_to_response_with_state_json({'plugins': plugins}, status=status_code)
+        return self.render_to_response({'plugins': plugins}, status=status_code)
 
     def render_to_response_json(self, plugins, status):
         return JsonResponse(
@@ -40,7 +40,7 @@ class MainView(TemplateView):
     def render_to_response_with_state_json(self, plugins, status):
         response = []
         for p in plugins:
-            response+={'resource': str(p.identifier()), 'state': str(p.state()), 'details': str(p.pretty_status())}
+            response+=[{'resource': str(p.identifier()), 'state': str(p.state()), 'details': str(p.pretty_status())}]
         return JsonResponse(
             {'resources': response},
             status=status
