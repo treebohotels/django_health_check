@@ -25,7 +25,7 @@ class MainView(TemplateView):
             if str(plugin.identifier()) not in settings.HEALTH_CHECK_CONF['soft_dependencies']:
                 hard_dependency_errors += plugin.errors
         plugins.sort(key=lambda x: x.identifier())
-        status_code = 500 if hard_dependency_errors else 200
+        status_code = 503 if hard_dependency_errors else 200
 
         if 'application/json' in request.META.get('HTTP_ACCEPT', ''):
             return self.render_to_response_with_state_json(plugins, status_code)

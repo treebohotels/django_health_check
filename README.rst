@@ -66,7 +66,7 @@ Setting up monitoring
 
 You can use tools like Pingdom_ or other uptime robots to monitor service status.
 The ``/api/health/`` endpoint will respond a HTTP 200 if all checks passed
-and a HTTP 500 if any of the tests failed.
+and a HTTP 503 if any of the tests failed.
 
 .. code::
 
@@ -121,7 +121,7 @@ The backend will return a JSON response:
     < Content-Type: application/json
 
     {
-    "resources": 
+    "resources":
         [
             {"state": "ok", "resource": "DatabaseBackend", "details": "working"},
             {"state": "fail", "resource": "RMQHealthCheck", "details": "unavailable: Connection Error"}
