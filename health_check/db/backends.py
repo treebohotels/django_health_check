@@ -12,6 +12,8 @@ class DatabaseBackend(BaseHealthCheckBackend):
 
         try:
             for db_conn_name in connections:
-                connections[db_conn_name].cursor()
+                with connections[db_conn_name].cursor() as c:
+                    c.execute('select 1;')
+                    c.fetchall()
         except Exception:
             ServiceUnavailable("Database error")
