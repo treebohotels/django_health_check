@@ -16,4 +16,4 @@ class DatabaseBackend(BaseHealthCheckBackend):
                     c.execute('select 1;')
                     c.fetchall()
         except Exception:
-            ServiceUnavailable("Database error")
+            raise ServiceUnavailable("Database error")
